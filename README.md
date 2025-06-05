@@ -1,8 +1,13 @@
-# samloader<br>
+# <a href="https://sudo-self.github.io/samloader/">samloader</a><br>
 
-Download firmware for Samsung devices Command Line 
+Download Samsung Official Firmware in Command Line
 
-## Installation
+## Windows
+
+<a href="https://github.com/sudo-self/samloader/Frija.exe">Frija.exe</a></br>
+
+## macOS 
+
 ```
 pip3 install git+https://github.com/sudo-self/samloader.git
 ```
