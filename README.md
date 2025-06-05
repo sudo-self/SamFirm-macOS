@@ -4,11 +4,52 @@ Download Samsung Official Firmware in Command Line
 
 ## Windows
 
-<a href="https://github.com/sudo-self/samloader/Frija.exe">Frija.exe</a></br>
+<a href="https://github.com/sudo-self/samloader/Frija.exe">DoubleClick.exe</a></br>
 
 ## macOS 
 
+
+clone
+
 ```
+git clone https://github.com/sudo-self/samloader.git
+cd samloader
+
+```
+
+activate virtual environment
+
+```
+
+python3 -m venv venv
+source venv/bin/activate
+
+```
+
+upgrade pip
+
+```
+pip install --upgrade pip
+
+```
+
+install dependencies
+
+```
+pip install .
+
+```
+
+verify it works
+
+```
+./bin/samloader -h
+
+```
+install command 
+
+```
+
 pip3 install git+https://github.com/sudo-self/samloader.git
 ```
 
