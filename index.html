@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Samsung Firmware Download & Decrypt (SM-S921U1)</title>
+  <style>
+    body {
+      font-family: "Segoe UI", sans-serif;
+      margin: 2rem;
+      background: #f9f9f9;
+      color: #333;
+    }
+    code, pre {
+      background: #eee;
+      padding: 0.3em 0.6em;
+      border-radius: 5px;
+      font-family: monospace;
+    }
+    pre {
+      overflow-x: auto;
+      padding: 1em;
+    }
+    h1, h2, h3 {
+      color: #1a1a1a;
+    }
+    a {
+      color: #0366d6;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #ccc;
+      margin: 2em 0;
+    }
+  </style>
+</head>
+<body>
+
+<h1>📲 Samsung Firmware Download & Decrypt (SM-S921U1 - USA Unlocked)</h1>
+<p>This guide shows how to check for the latest firmware, download it, and decrypt it using <code>samloader</code>.</p>
+
+<hr>
+
+<h2>✅ Requirements</h2>
+<ul>
+  <li>Python 3.10 or 3.11 (<strong>❗ Avoid Python 3.13</strong> — causes runtime errors)</li>
+  <li>Install <code>samloader</code>:
+    <pre><code>pip install samloader</code></pre>
+  </li>
+  <li>macOS, Linux, or Windows with terminal access</li>
+  <li>Samsung model: <code>SM-S921U1</code> (Galaxy S24 Ultra - US Unlocked)</li>
+  <li>CSC (region): <code>XAA</code> (Unbranded US)</li>
+</ul>
+
+<hr>
+
+<h2>🔍 Step 1: Check for Latest Firmware</h2>
+<pre><code>samloader -m SM-S921U1 -r XAA checkupdate</code></pre>
+<p>Expected output:</p>
+<pre><code>S921U1UES4BYE4/S921U1OYM4BYE4/S921U1UES4BYE4/S921U1UES4BYE4</code></pre>
+<p>This confirms the firmware is available.</p>
+
+<hr>
+
+<h2>⬇️ Step 2: Download the Firmware</h2>
+<pre><code>samloader -m SM-S921U1 -r XAA download -v S921U1UES4BYE4 -O ./firmware</code></pre>
+<ul>
+  <li><code>-m</code>: device model</li>
+  <li><code>-r</code>: region code</li>
+  <li><code>-v</code>: full firmware version</li>
+  <li><code>-O</code>: output directory for encrypted firmware</li>
+</ul>
+
+<hr>
+
+<h2>🔓 Step 3: Decrypt the Firmware</h2>
+<p>After the download completes:</p>
+<pre><code>samloader -m SM-S921U1 -r XAA decrypt -v S921U1UES4BYE4 -V 4 -i ./firmware/SM-S921U1_*.zip -o ./firmware/decrypted</code></pre>
+<ul>
+  <li><code>-V 4</code>: encryption version (usually 4)</li>
+  <li><code>-i</code>: input ZIP file path</li>
+  <li><code>-o</code>: output directory for decrypted Odin files</li>
+</ul>
+
+<hr>
+
+<h2>🧰 Optional: Flash Using Odin (Windows Only)</h2>
+<ol>
+  <li>Boot into <strong>Download Mode</strong>: Power off → Hold <code>Volume Up + Volume Down</code> → Plug USB-C</li>
+  <li>Launch <strong>Odin3 v3.14.4+</strong></li>
+  <li>Load decrypted files into: <code>BL</code>, <code>AP</code>, <code>CP</code>, <code>CSC</code></li>
+  <li>Click <strong>Start</strong></li>
+</ol>
+<p><strong>Note:</strong> Use <code>HOME_CSC</code> to retain data or <code>CSC</code> to wipe.</p>
+
+<hr>
+
+<h2>🧼 Clean Up</h2>
+<pre><code>rm ./firmware/SM-S921U1_*.zip</code></pre>
+
+<hr>
+
+<h2>🐛 Troubleshooting</h2>
+<ul>
+  <li><strong>No latest firmware available</strong>: Try different model or CSC (e.g., <code>SM-S921U1</code> + <code>XAA</code>)</li>
+  <li><strong>IndexError / string index out of range</strong>: Downgrade to Python 3.10 or 3.11</li>
+  <li><strong>Decrypt can't find ZIP</strong>: Ensure file exists and <code>-i</code> path is correct</li>
+</ul>
+
+<hr>
+
+<h2>📦 All-in-One Command</h2>
+<pre><code>samloader -m SM-S921U1 -r XAA checkupdate &amp;&amp; \
+samloader -m SM-S921U1 -r XAA download -v S921U1UES4BYE4 -O ./firmware &amp;&amp; \
+samloader -m SM-S921U1 -r XAA decrypt -v S921U1UES4BYE4 -V 4 -i ./firmware/SM-S921U1_*.zip -o ./firmware/decrypted</code></pre>
+
+<hr>
+
+<h2>🙋 Credits</h2>
+<ul>
+  <li>Tool: <a href="https://github.com/nlscc/samloader" target="_blank">samloader</a></li>
+  <li>Maintainer: <a href="https://github.com/sudoself" target="_blank">macOS @sudoself</a></li>
+</ul>
+
+</body>
+</html>
+
